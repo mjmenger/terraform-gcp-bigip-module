@@ -146,7 +146,7 @@ data "google_secret_manager_secret_version" "secret" {
 }*/
 
 resource "google_project_iam_member" "gcp_role_member_assignment" {
-  count   = var.gcp_secret_manager_authentication && var.service_account = = "" ? 1 : 0
+  count   = var.gcp_secret_manager_authentication && var.service_account == "" ? 1 : 0
   project = var.project_id
   role    = format("projects/${var.project_id}/roles/%s", random_string.sa_role.result)
   member  = "serviceAccount:${var.service_account}"
@@ -154,7 +154,7 @@ resource "google_project_iam_member" "gcp_role_member_assignment" {
 }
 
 resource "google_project_iam_custom_role" "gcp_custom_roles" {
-  count       = var.gcp_secret_manager_authentication && var.service_account =  = "" ? 1 : 0
+  count       = var.gcp_secret_manager_authentication && var.service_account == "" ? 1 : 0
   role_id     = random_string.sa_role.result
   title       = random_string.sa_role.result
   description = "IAM for authentication"
