@@ -198,3 +198,8 @@ variable "metadata" {
   default     = {}
 }
 
+variable "tags" {
+  description = "map of key:value pairs to apply to all resources built by the module"
+  type        = map(string)
+  default     = {}
+}
