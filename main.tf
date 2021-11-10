@@ -261,5 +261,4 @@ resource "google_compute_instance" "f5vm01" {
     command = "sleep 250"
   }
   labels = merge(var.tags,var.labels,{})
-  tags   = merge(var.tags,var.labels,{})
 }
